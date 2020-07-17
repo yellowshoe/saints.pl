@@ -1,0 +1,150 @@
+// FONTS
+
+@mixin font-face($font-name) {
+	@font-face {
+		font-family: $font-name;
+		src: url("../fonts/#{$font-name}.woff") format('woff')
+	}
+}
+
+@include font-face(bebas_bold);
+@include font-face(myriadpro_semibold);
+@include font-face(myriadpro_regular);
+
+$primary: bebas_bold;
+$secondary: myriadpro_semibold;
+$tertiary: myriadpro_regular;
+
+
+// COLORS
+
+$monza: #CB0B11;
+
+
+// BREAKPOINTS 
+
+$breakpoint-sm: 420px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+
+// MIXINS
+
+@mixin flex($dir: null) {
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+	display: flex;
+	flex-direction: $dir;
+}
+
+@mixin hmbrg-inner($top, $trans) {
+	content: '';
+	width: 100%;
+	height: 4px;
+	background-color: white;
+	position: absolute;
+	left: 0;
+	top: $top;
+	transition: $trans;
+}
+
+
+// BACKGROUND PICTURES IN NEWS
+
+$images: ('1', '2', '3', '4', '5');
+
+@each $img in $images {
+	.news__img--#{$img} {
+		background-image: url(../img/home/img-news__#{$img}.jpg);
+	}
+}
+
+
+// FUNCTION FOR MEDIA QUERIES
+
+@mixin mq($break) {
+	@if $break == "sm" {
+		@media (min-width: $breakpoint-sm) {
+			@content;
+		}
+	}
+	@else if $break == "md" {
+		@media (min-width: $breakpoint-md) {
+			@content;
+		}
+	}
+	@else if $break == "lg" {
+		@media (min-width: $breakpoint-lg) {
+			@content;
+		}
+	}
+	@else if $break == "xl" {
+		@media (min-width: $breakpoint-xl) {
+			@content;
+		}
+	}
+}
+
+
+// PLACEHOLDERS
+
+%head-size {
+	font-family: $primary;	
+	letter-spacing: 1px;
+	text-align: center;
+	font-size: 22px;
+	@include mq(sm) {
+		font-size: 35px;
+	}
+	@include mq(md) {
+		font-size: 50px;
+	}
+	@include mq(lg) {
+		font-size: 60px;
+	}
+	@include mq(xl) {
+		font-size: 80px;
+	}
+}
+
+%article-margins {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	@include mq(sm) {
+		margin-top: 60px;
+		
+	}
+	@include mq(md) {
+		margin-top: 60px;
+		
+	}
+	@include mq(lg) {
+		margin-top: 60px;
+		
+	}
+	@include mq(xl) {
+		margin-top: 60px;
+		
+	}
+}
+
+
+// CLASSES
+
+.container {
+	max-width: 1300px;
+	width: 100%;
+}
+
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.prc-margins {
+	margin-left: 2%;
+	margin-right: 2%;
+}
